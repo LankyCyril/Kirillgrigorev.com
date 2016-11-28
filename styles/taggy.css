@@ -40,11 +40,12 @@ div.links a {
     padding: 0 4pt;
 }
 
-a[href*="\.\/cv"]:hover {background: #0D0}
-a[href*="ub\.co"]:hover {background: #777}
+a[href*="\.\/cv"]:hover {background: #ED0}
 a[href*="te\.ne"]:hover {background: #0A8}
-a[href*="ok\.co"]:hover {background: #009}
-a[href*="er\.co"]:hover {background: #4AE}
-a[href*="vk\.co"]:hover {background: #26B}
-a[href*="ud\.co"]:hover {background: #F50}
+a[href*="ub\.co"]:hover {background: #777}
 a[href*="\.\/co"]:hover {background: #D00}
+a[href*="ud\.co"]:hover {background: #F50}
+a[href*="om\/@l"]:hover {background: #0C5}
+a[href*="ok\.co"]:hover {background: #009}
+a[href*="vk\.co"]:hover {background: #26B}
+a[href*="er\.co"]:hover {background: #4AE}
