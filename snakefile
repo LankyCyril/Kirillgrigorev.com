@@ -3,8 +3,11 @@ from csscompressor import compress
 from htmlmin import minify
 
 rule all:
-    input: html="temp/index.html"
-    output: html="index.html"
+    input: "index.html"
+
+rule min_html:
+    input: html="temp/{name}.htm"
+    output: html="{name}.html"
     run:
         with open(input.html) as html_in:
             uncompressed = html_in.read()
@@ -18,11 +21,11 @@ rule all:
         with open(output.html, "w") as html_out:
             html_out.write(compressed)
 
-rule intermediate_html:
+rule intermediate_index:
     input:
         html="src/html/index.html",
         css="temp/min.css"
-    output: html=temp("temp/index.html")
+    output: html=temp("temp/index.htm")
     params:
         marker="<style id='inline_all' type='text/css'></style>",
         start_tag="<style type='text/css'>",
