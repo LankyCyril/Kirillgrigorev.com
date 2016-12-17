@@ -8,11 +8,13 @@ rule all:
     run:
         with open(input.html) as html_in:
             uncompressed = html_in.read()
-        compressed = minify(
+        raw_compressed = minify(
             uncompressed,
             remove_comments=True,
-            reduce_boolean_attributes=True
+            reduce_boolean_attributes=True,
+            remove_all_empty_space=True
         )
+        compressed = raw_compressed.replace("&bsp;", " ")
         with open(output.html, "w") as html_out:
             html_out.write(compressed)
 
