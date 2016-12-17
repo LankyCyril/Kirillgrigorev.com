@@ -12,16 +12,6 @@ rule all:
         with open(output.html, "w") as html_out:
             html_out.write(compressed)
 
-rule min_css:
-    input: css=glob("src/css/*.css")
-    output: css=temp("temp/min.css")
-    run:
-        with open(output.css, "w") as css_out:
-            for css_file in input.css:
-                with open(css_file) as css_in:
-                    min_css = compress(css_in.read())
-                    css_out.write(min_css)
-
 rule intermediate_html:
     input:
         html="src/html/index.html",
@@ -40,3 +30,13 @@ rule intermediate_html:
                     html_out.write(params.start_tag + min_css + params.end_tag)
                 else:
                     html_out.write(line)
+
+rule min_css:
+    input: css=glob("src/css/*.css")
+    output: css=temp("temp/min.css")
+    run:
+        with open(output.css, "w") as css_out:
+            for css_file in input.css:
+                with open(css_file) as css_in:
+                    min_css = compress(css_in.read())
+                    css_out.write(min_css)
