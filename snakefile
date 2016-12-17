@@ -8,7 +8,11 @@ rule all:
     run:
         with open(input.html) as html_in:
             uncompressed = html_in.read()
-            compressed = minify(uncompressed)
+        compressed = minify(
+            uncompressed,
+            remove_comments=True,
+            reduce_boolean_attributes=True
+        )
         with open(output.html, "w") as html_out:
             html_out.write(compressed)
 
