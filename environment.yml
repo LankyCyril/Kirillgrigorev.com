@@ -14,5 +14,6 @@ dependencies:
 - conda-forge::wincertstore=0.2=py35_0
 - pip:
   - csscompressor==0.9.4
+  - htmlmin==0.1.10
   - snakemake==3.9.0
   - wrapt==1.10.8

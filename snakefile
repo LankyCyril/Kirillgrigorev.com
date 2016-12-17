@@ -1,5 +1,16 @@
 from glob import glob
 from csscompressor import compress
+from htmlmin import minify
+
+rule all:
+    input: html="temp/index.html"
+    output: html="index.html"
+    run:
+        with open(input.html) as html_in:
+            uncompressed = html_in.read()
+            compressed = minify(uncompressed)
+        with open(output.html, "w") as html_out:
+            html_out.write(compressed)
 
 rule min_css:
     input: css=glob("src/css/*.css")
