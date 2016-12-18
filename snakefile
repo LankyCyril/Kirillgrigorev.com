@@ -1,6 +1,10 @@
+from os.path import isfile
+from sys import stderr
+from os import remove
+from re import sub
+from htmlmin import minify
 from glob import glob
 from csscompressor import compress
-from htmlmin import minify
 from base64 import b64encode
 from urllib.parse import quote_from_bytes
 from shutil import which
@@ -9,12 +13,27 @@ from subprocess import call
 rule all:
     input: "index.html", "cv/index.html"
 
+rule reset:
+    run:
+        for filename in rules.all.input:
+            if isfile(filename):
+                stderr.write("Removing {}\n".format(filename))
+                remove(filename)
+
 rule min_html:
     input: html="temp/{name}.htm"
     output: html="{name}.html"
     run:
         with open(input.html) as html_in:
-            uncompressed = html_in.read()
+            raw_uncompressed = html_in.read()
+        if config.get("keep_protocols", "False") == "False":
+            mask = r"([\"\'])(http:|https:)"
+            uncompressed = sub(mask, r"\1", raw_uncompressed)
+        else:
+            uncompressed = raw_uncompressed
+        if config.get("keep_long_ids", "False") == "False":
+            for identifier in "slapbang", "content", "name", "links":
+                uncompressed = uncompressed.replace(identifier, identifier[0])
         raw_compressed = minify(
             uncompressed,
             remove_comments=True,
