@@ -5,9 +5,19 @@ from base64 import b64encode
 from urllib.parse import quote_from_bytes
 from shutil import which
 from subprocess import call
+from os.path import isfile
+from os import remove
+from sys import stderr
 
 rule all:
     input: "index.html", "cv/index.html"
+
+rule reset:
+    run:
+        for filename in rules.all.input:
+            if isfile(filename):
+                stderr.write("Removing {}\n".format(filename))
+                remove(filename)
 
 rule min_html:
     input: html="temp/{name}.htm"
