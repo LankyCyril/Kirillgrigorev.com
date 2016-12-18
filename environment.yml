@@ -1,8 +1,6 @@
 name: sitebuilder
 channels: !!python/tuple
 - conda-forge
-- bioconda
-- r
 - defaults
 dependencies:
 - conda-forge::certifi=2016.9.26=py35_0
