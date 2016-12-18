@@ -4,14 +4,9 @@
     padding: 0;
     border: 0;
     line-height: 1.6;
-    font-family: inherit;
 }
 
 body, html {
     height: 100%;
     width: 100%;
-}
-
-a:focus {
-    outline: none;
 }
