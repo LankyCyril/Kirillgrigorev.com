@@ -6,6 +6,7 @@ channels: !!python/tuple
 - defaults
 dependencies:
 - conda-forge::certifi=2016.9.26=py35_0
+- conda-forge::nodejs=6.6.0=0
 - conda-forge::pip=9.0.1=py35_0
 - conda-forge::python=3.5.2=2
 - conda-forge::setuptools=32.1.0=py35_0
