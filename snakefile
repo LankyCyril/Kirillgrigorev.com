@@ -1,3 +1,4 @@
+from re import sub
 from glob import glob
 from csscompressor import compress
 from htmlmin import minify
@@ -24,7 +25,12 @@ rule min_html:
     output: html="{name}.html"
     run:
         with open(input.html) as html_in:
-            uncompressed = html_in.read()
+            raw_uncompressed = html_in.read()
+        if config.get("keep_protocols", "False") == "False":
+            mask = r"([\"\'])(http:|https:)"
+            uncompressed = sub(mask, r"\1", raw_uncompressed)
+        else:
+            uncompressed = raw_uncompressed
         raw_compressed = minify(
             uncompressed,
             remove_comments=True,
