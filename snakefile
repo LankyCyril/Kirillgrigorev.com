@@ -1,14 +1,14 @@
+from os.path import isfile
+from sys import stderr
+from os import remove
 from re import sub
+from htmlmin import minify
 from glob import glob
 from csscompressor import compress
-from htmlmin import minify
 from base64 import b64encode
 from urllib.parse import quote_from_bytes
 from shutil import which
 from subprocess import call
-from os.path import isfile
-from os import remove
-from sys import stderr
 
 rule all:
     input: "index.html", "cv/index.html"
