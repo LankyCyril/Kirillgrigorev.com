@@ -1,9 +1,11 @@
 from glob import glob
 from csscompressor import compress
 from htmlmin import minify
+from base64 import b64encode
+from urllib.parse import quote_from_bytes
 
 rule all:
-    input: "index.html"
+    input: "index.html", "cv/index.html"
 
 rule min_html:
     input: html="temp/{name}.htm"
@@ -49,3 +51,22 @@ rule min_css:
                 with open(css_file) as css_in:
                     min_css = compress(css_in.read())
                     css_out.write(min_css)
+
+rule intermediate_cv_index:
+    input:
+        html="src/html/cv/index.html",
+        png="src/img/preview-blurred.png"
+    output: html=temp("temp/cv/index.htm")
+    params:
+        marker="<img id='inline_all'>",
+        replacement="<img src='data:image/png;base64,{}'/>"
+    run:
+        with open(input.html) as html_in, open(output.html, "w") as html_out:
+            for line in html_in:
+                if line.strip() == params.marker:
+                    with open(input.png, "rb") as png_handle:
+                        raw_b64data = b64encode(png_handle.read())
+                        b64data = quote_from_bytes(raw_b64data)
+                    html_out.write(params.replacement.format(b64data))
+                else:
+                    html_out.write(line)
