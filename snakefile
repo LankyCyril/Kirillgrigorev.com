@@ -3,6 +3,8 @@ from csscompressor import compress
 from htmlmin import minify
 from base64 import b64encode
 from urllib.parse import quote_from_bytes
+from shutil import which
+from subprocess import call
 
 rule all:
     input: "index.html", "cv/index.html"
@@ -55,7 +57,7 @@ rule min_css:
 rule intermediate_cv_index:
     input:
         html="src/html/cv/index.html",
-        png="src/img/preview-blurred.png"
+        png="temp/preview-blurred.png"
     output: html=temp("temp/cv/index.htm")
     params:
         marker="<img id='inline_all'>",
@@ -70,3 +72,12 @@ rule intermediate_cv_index:
                     html_out.write(params.replacement.format(b64data))
                 else:
                     html_out.write(line)
+
+rule compress_png:
+    input: png="src/img/preview-blurred.png"
+    output: png=temp("temp/preview-blurred.png")
+    run:
+        if which("optipng"):
+            call(["optipng", "-o7", "-zm1-9", "-out", output.png, input.png])
+        else:
+            call(["cp", input.png, output.png])
