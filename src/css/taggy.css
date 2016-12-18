@@ -16,9 +16,8 @@ div.content {
 }
 
 #name {
-    font-size: 48pt;
+    font: 48pt Roboto, sans-serif;
     line-height: 1;
-    text-transform: uppercase;
     color: #000;
     display: inline-block;
     text-align: left;
@@ -31,7 +30,7 @@ div.links {
 }
 
 div.links a {
-    font-family: 'Fira Mono', monospace;
+    font: 15.56px 'Fira Mono', monospace;
     color: #FFF;
     background: #000;
     text-decoration: none;
