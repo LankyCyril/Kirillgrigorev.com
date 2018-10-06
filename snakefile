@@ -32,7 +32,7 @@ rule min_html:
         else:
             uncompressed = raw_uncompressed
         if config.get("keep_long_ids", "False") == "False":
-            for identifier in "slapbang", "content", "name", "links":
+            for identifier in "slapbang", "businesscard", "fullname", "links":
                 uncompressed = uncompressed.replace(identifier, identifier[0])
         raw_compressed = minify(
             uncompressed,

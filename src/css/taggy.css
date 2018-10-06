@@ -11,11 +11,11 @@ div.slapbang {
     right: 0;
 }
 
-div.content {
+div.businesscard {
     display: inline-block;
 }
 
-#name {
+#fullname {
     font: 48pt Roboto, sans-serif;
     line-height: 1;
     color: #000;
