@@ -1,0 +1,18 @@
+name: sitebuilder
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - certifi=2016.9.26=py35_0
+  - python=3.5.2=2
+  - setuptools=32.1.0=py35_0
+  - vs2015_runtime=14.0.25420=0
+  - wheel=0.29.0=py35_0
+  - wincertstore=0.2=py35_0
+  - pip=9.0.1=py35_0
+  - pip:
+    - csscompressor==0.9.4
+    - htmlmin==0.1.10
+    - pyyaml==3.13
+    - snakemake==3.9.0
+    - wrapt==1.10.8
