@@ -11,16 +11,22 @@ div.slapbang {
     right: 0;
 }
 
-div.businesscard {
-    display: inline-block;
-}
-
 #fullname {
     font: 48pt Roboto, sans-serif;
     line-height: 1;
     color: #000;
     display: inline-block;
     text-align: left;
+}
+
+#vignette {
+    display: inline-block;
+    width: 400pt;
+    text-align: left;
+    padding: 0 3.7pt;
+    position: relative;
+    top: -6pt;
+    font: 13pt Roboto, sans-serif;
 }
 
 div.links {
