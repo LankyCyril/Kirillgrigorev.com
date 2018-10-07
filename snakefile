@@ -10,6 +10,8 @@ from urllib.parse import quote_from_bytes
 from shutil import which
 from subprocess import call
 
+configfile: "config.yaml"
+
 rule all:
     input: "index.html", "cv/index.html"
 
@@ -26,13 +28,13 @@ rule min_html:
     run:
         with open(input.html) as html_in:
             raw_uncompressed = html_in.read()
-        if config.get("keep_protocols", "False") == "False":
+        if not config.get("keep_protocols", False):
             mask = r"([\"\'])(http:|https:)"
             uncompressed = sub(mask, r"\1", raw_uncompressed)
         else:
             uncompressed = raw_uncompressed
-        if config.get("keep_long_ids", "False") == "False":
-            for identifier in "slapbang", "content", "name", "links":
+        if not config.get("keep_long_ids", False):
+            for identifier in "slapbang", "fullname", "vignette", "links":
                 uncompressed = uncompressed.replace(identifier, identifier[0])
         raw_compressed = minify(
             uncompressed,
