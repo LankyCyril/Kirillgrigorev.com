@@ -39,18 +39,17 @@
     margin: 0 1pt;
 }
 
+#links a[href*="\.\/cv"]:hover {background: #D00}
+#links a[href*="te\.ne"]:hover {background: #0A8}
+#links a[href*="le\.co"]:hover {background: #15A}
+#links a[href*="ub\.co"]:hover {background: #777}
+#links a[href*="om\/@l"]:hover {background: #0C5}
+#links a[href*="ud\.co"]:hover {background: #F50}
+#links a[href*="am\.co"]:hover {background: #94C}
+#links a[href*="er\.co"]:hover {background: #4AE}
+
 #vignette {
     padding: 7pt 1.3pt;
     font: 12pt 'Roboto', sans-serif;
     text-align: justify;
 }
-
-a[href*="\.\/cv"]:hover {background: #009}
-a[href*="te\.ne"]:hover {background: #0A8}
-a[href*="le\.co"]:hover {background: #ED0}
-a[href*="ub\.co"]:hover {background: #777}
-
-a[href*="om\/@l"]:hover {background: #0C5}
-a[href*="ud\.co"]:hover {background: #F50}
-a[href*="am\.co"]:hover {background: #D00}
-a[href*="er\.co"]:hover {background: #4AE}
