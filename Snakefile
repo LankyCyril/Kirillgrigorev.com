@@ -13,7 +13,8 @@ from subprocess import call
 configfile: "config.yaml"
 
 rule all:
-    input: "index.html", "cv/index.html"
+    run:
+        print("Not just yet", file=stderr)
 
 rule reset:
     run:
