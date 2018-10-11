@@ -1,55 +1,56 @@
-div.slapbang {
-    height: 160pt;
-    line-height: 50pt;
-    width: 90%;
-    text-align: center;
+#page {
     position: absolute;
-    margin: auto;
+    min-width: 370px;
     top: 0;
     left: 0;
-    bottom: 0;
     right: 0;
+    bottom: 0;
+}
+
+#container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+    width: 370px;
+    min-width: 370px;
 }
 
 #fullname {
-    font: 48pt Roboto, sans-serif;
+    font: 35pt Roboto, sans-serif;
     line-height: 1;
     color: #000;
-    display: inline-block;
+}
+
+#links {
+    padding: 3pt 1pt 0pt 1pt;
+    line-height: 20.3pt;
     text-align: left;
 }
 
-#vignette {
-    display: inline-block;
-    width: 400pt;
-    text-align: left;
-    padding: 0 3.7pt;
-    position: relative;
-    top: -6pt;
-    font: 13pt Roboto, sans-serif;
-}
-
-div.links {
-    width: 360pt;
-    padding: 0 3.7pt;
-    text-align: left;
-}
-
-div.links a {
-    font: 15.56px 'Fira Mono', monospace;
+#links a {
+    font: 10.5pt 'Fira Mono', monospace;
     color: #FFF;
     background: #000;
     text-decoration: none;
-    padding: 1.5pt 4.5pt 0.6pt 4.5pt;
+    padding: 1.3pt 4.5pt 1.1pt 4.5pt;
     margin: 0 1pt;
 }
 
-a[href*="\.\/cv"]:hover {background: #ED0}
+#vignette {
+    padding: 7pt 1.3pt;
+    font: 12pt 'Roboto', sans-serif;
+    text-align: justify;
+}
+
+a[href*="\.\/cv"]:hover {background: #009}
 a[href*="te\.ne"]:hover {background: #0A8}
+a[href*="le\.co"]:hover {background: #ED0}
 a[href*="ub\.co"]:hover {background: #777}
-a[href*="\.\/co"]:hover {background: #D00}
-a[href*="ud\.co"]:hover {background: #F50}
+
 a[href*="om\/@l"]:hover {background: #0C5}
-a[href*="ok\.co"]:hover {background: #009}
-a[href*="vk\.co"]:hover {background: #26B}
+a[href*="ud\.co"]:hover {background: #F50}
+a[href*="am\.co"]:hover {background: #D00}
 a[href*="er\.co"]:hover {background: #4AE}
