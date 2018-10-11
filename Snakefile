@@ -13,8 +13,7 @@ from subprocess import call
 configfile: "config.yaml"
 
 rule all:
-    run:
-        print("Not just yet", file=stderr)
+    input: "index.html", "cv/index.html"
 
 rule reset:
     run:
@@ -35,7 +34,7 @@ rule min_html:
         else:
             uncompressed = raw_uncompressed
         if not config.get("keep_long_ids", False):
-            for identifier in "slapbang", "fullname", "vignette", "links":
+            for identifier in "container", "fullname", "vignette", "links":
                 uncompressed = uncompressed.replace(identifier, identifier[0])
         raw_compressed = minify(
             uncompressed,
@@ -43,7 +42,7 @@ rule min_html:
             reduce_boolean_attributes=True,
             remove_all_empty_space=True
         )
-        compressed = raw_compressed.replace("&bsp;", " ")
+        compressed = raw_compressed.replace("&zwj;", " ")
         with open(output.html, "w") as html_out:
             html_out.write(compressed)
 
