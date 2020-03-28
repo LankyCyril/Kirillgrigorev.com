@@ -21,7 +21,6 @@
 #fullname {
     font: 35pt Roboto, sans-serif;
     line-height: 1;
-    color: #000;
 }
 
 #links {
@@ -40,13 +39,13 @@
 }
 
 #links a[href*="\.\/c"]:hover {background: #94C}
-#links a[href*="te\.n"]:hover {background: #0A8}
+#links a[href*="e\.n"]:hover {background: #0A8}
 #links a[href*="le\.c"]:hover {background: #15A}
-#links a[href*="ub\.c"]:hover {background: #777}
-#links a[href*="om\/@"]:hover {background: #0C5}
-#links a[href*="ud\.c"]:hover {background: #F50}
+#links a[href*="b\.c"]:hover {background: #777}
+#links a[href*="\/@"]:hover {background: #0C5}
+#links a[href*="d\.c"]:hover {background: #F50}
 #links a[href*="be\.c"]:hover {background: #D00}
-#links a[href*="er\.c"]:hover {background: #4AE}
+#links a[href*="r\.c"]:hover {background: #4AE}
 
 #vignette {
     padding: 7pt 1.3pt;
