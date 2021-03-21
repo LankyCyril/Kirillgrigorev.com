@@ -4,7 +4,7 @@
         <meta charset='utf-8'/>
         <meta http-equiv='X-UA-Compatible' content='IE=edge'/>
         <meta http-equiv='Content-Type' content='text/html; charset=utf-8'/>
-        <title></title>
+        <title>20/20/20</title>
     </head>
     <style type='text/css'>
         * {box-sizing: border-box; margin: 0; padding: 0; border: 0; font-family: monospace; font-size: 15pt}
@@ -22,13 +22,23 @@
             <div id='controls'>
                 <h3>The 20/20/20 rule</h3><br/>
                 Beep every: <input id='minutes' type='text' value=20></input> minutes<br/>
-                Ding after: <input id='seconds' type='text' value=30></input> seconds<br/>
+                Ding after: <input id='seconds' type='text' value=20></input> seconds<br/>
                 Volume: <input id='volume' type='range' value=50><br/>
                 <input id='play_stop' type='button' value='Loop'>
             </div>
         </div>
     </body>
     <script type='text/javascript'>
+        var params = {}
+        location.search.substr(1).split("&").forEach(function (pair) {
+            params[pair.split("=")[0]] = pair.split("=")[1];
+        })
+        if ("beep_minutes" in params) {
+            byid("minutes").value = parseInt(params["beep_minutes"]);
+        }
+        if ("ding_seconds" in params) {
+            byid("seconds").value = parseInt(params["ding_seconds"]);
+        }
         var paused = true, beeper_id = false, dinger_id = false;
         function byid(id) {
             return document.getElementById(id);
