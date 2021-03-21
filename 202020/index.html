@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang='en'>
+    <head>
+        <meta charset='utf-8'/>
+        <meta http-equiv='X-UA-Compatible' content='IE=edge'/>
+        <meta http-equiv='Content-Type' content='text/html; charset=utf-8'/>
+        <title></title>
+    </head>
+    <style type='text/css'>
+        * {box-sizing: border-box; margin: 0; padding: 0; border: 0; font-family: monospace; font-size: 15pt}
+        h3 {font-size: 20pt; font-family: sans-serif; font-weight: normal}
+        div#page {width: 100vw; height: 100vh; display: grid; align-items: center; justify-content: center}
+        div#controls {text-align: center}
+        div#controls * {margin: 3pt 0}
+        input#minutes, input#seconds {width: 36pt; border: 1px solid black}
+        input#volume {height: 16pt; width: 144pt; position: relative; top: 3pt}
+        input#play_stop {height: 32pt; width: 50pt; margin-top: 16pt; background: black; color: white; cursor: pointer}
+        input[disabled] {background: #BBB}
+    </style>
+    <body>
+        <div id='page'>
+            <div id='controls'>
+                <h3>The 20/20/20 rule</h3><br/>
+                Beep every: <input id='minutes' type='text' value=20></input> minutes<br/>
+                Ding after: <input id='seconds' type='text' value=30></input> seconds<br/>
+                Volume: <input id='volume' type='range' value=50><br/>
+                <input id='play_stop' type='button' value='Loop'>
+            </div>
+        </div>
+    </body>
+    <script type='text/javascript'>
+        var paused = true, beeper_id = false, dinger_id = false;
+        function byid(id) {
+            return document.getElementById(id);
+        }
+        function ding() {
+            var audio = new Audio("./ding.mp3");
+            audio.volume = parseInt(byid("volume").value) / 100;
+            audio.play();
+        }
+        function beep() {
+            var audio = new Audio("./beep.mp3");
+            audio.volume = parseInt(byid("volume").value) / 100;
+            audio.play();
+            var ding_delay = parseInt(byid("seconds").value) * 1000;
+            dinger_id = setTimeout(ding, ding_delay);
+        }
+        byid("play_stop").onclick = function () {
+            paused = !paused;
+            if (paused) {
+                byid("play_stop").value = "Loop";
+                byid("minutes").disabled = false;
+                byid("seconds").disabled = false;
+                if (beeper_id !== false) {
+                    clearInterval(beeper_id);
+                    beeper_id = false;
+                }
+                if (dinger_id !== false) {
+                    clearTimeout(dinger_id);
+                    dinger_id = false;
+                }
+            }
+            else {
+                byid("play_stop").value = "Stop";
+                byid("minutes").disabled = true;
+                byid("seconds").disabled = true;
+                var beep_interval = parseInt(byid("minutes").value) * 60000;
+                beep();
+                beeper_id = setInterval(beep, beep_interval);
+            }
+        }
+    </script>
+</html>
