@@ -39,6 +39,9 @@
         if ("ding_seconds" in params) {
             byid("seconds").value = parseInt(params["ding_seconds"]);
         }
+        if ("volume" in params) {
+            byid("volume").value = parseInt(params["volume"]);
+        }
         var paused = true, beeper_id = false, dinger_id = false;
         function byid(id) {
             return document.getElementById(id);
