@@ -29,7 +29,9 @@
         </div>
     </body>
     <script type='text/javascript'>
-        var params = {}
+        var paused = true, beeper_id = false, dinger_id = false, params = {};
+        var ding_mp3 = new Audio("./ding.mp3");
+        var beep_mp3 = new Audio("./beep.mp3");
         location.search.substr(1).split("&").forEach(function (pair) {
             params[pair.split("=")[0]] = pair.split("=")[1];
         })
@@ -42,19 +44,16 @@
         if ("volume" in params) {
             byid("volume").value = parseInt(params["volume"]);
         }
-        var paused = true, beeper_id = false, dinger_id = false;
         function byid(id) {
             return document.getElementById(id);
         }
         function ding() {
-            var audio = new Audio("./ding.mp3");
-            audio.volume = parseInt(byid("volume").value) / 100;
-            audio.play();
+            ding_mp3.volume = parseInt(byid("volume").value) / 100;
+            ding_mp3.play();
         }
         function beep() {
-            var audio = new Audio("./beep.mp3");
-            audio.volume = parseInt(byid("volume").value) / 100;
-            audio.play();
+            beep_mp3.volume = parseInt(byid("volume").value) / 100;
+            beep_mp3.play();
             var ding_delay = parseInt(byid("seconds").value) * 1000;
             dinger_id = setTimeout(ding, ding_delay);
         }
