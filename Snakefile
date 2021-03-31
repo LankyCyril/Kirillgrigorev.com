@@ -10,7 +10,7 @@ from urllib.parse import quote_from_bytes
 from shutil import which
 from subprocess import call
 
-configfile: "config.yaml"
+configfile: "src/config.yaml"
 
 rule all:
     input: "index.html", "cv/index.html"
