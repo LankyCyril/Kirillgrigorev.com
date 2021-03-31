@@ -1,4 +1,4 @@
 .snakemake
 index.html
-temp
+_/temp
 cv/index.html
