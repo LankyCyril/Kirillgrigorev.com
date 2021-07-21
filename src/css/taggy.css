@@ -43,8 +43,8 @@
 #links a[href*="le\.c"]:hover {background: #15A}
 #links a[href*="b\.c"]:hover {background: #777}
 #links a[href*="\/@"]:hover {background: #0C5}
-#links a[href*="d\.c"]:hover {background: #F50}
-#links a[href*="be\.c"]:hover {background: #D00}
+#links a[href*="d\.c"]:hover {background: #F80}
+#links a[href*="be\.c"]:hover {background: #E00}
 #links a[href*="r\.c"]:hover {background: #4AE}
 
 #vignette {
