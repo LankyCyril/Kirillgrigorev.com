@@ -1,4 +1,3 @@
 .snakemake
 index.html
-temp
-cv/index.html
+x/temp

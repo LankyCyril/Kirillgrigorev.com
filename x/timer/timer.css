@@ -1,0 +1,49 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
+body, html {
+    height: 100%;
+    width: 100%;
+    background: black;
+}
+
+#container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 800px;
+    height: 360px;
+    margin: auto;
+    text-align: center;
+    cursor: default;
+    user-select: none;
+}
+
+#minutes, #seconds {
+    font-size: 256px;
+    font-family: Roboto, sans-serif;
+    color: #FFF;
+}
+
+#colon {
+    position: relative;
+    top: -16px;
+    font-size: 256px;
+    font-family: Roboto, sans-serif;
+    color: #FFF;
+}
+
+#controls {
+    font: 20px monospace;
+    color: #777;
+}
+
+#controls a {
+    cursor: pointer;
+}
