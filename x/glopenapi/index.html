@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8"/>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+        <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Roboto:300|Fira+Mono:400'>
+        <title></title>
+        <style type='text/css'>
+            * {
+                box-sizing: border-box;
+                border: 0;
+                font: 14pt Roboto, sans;
+                line-height: 1.6;
+            }
+            body, html {
+                height: 100%;
+                width: 95%;
+            }
+            h1 {
+                font-size: 24pt;
+                border-top: 1pt solid #333;
+                margin-top: 29pt;
+                margin-bottom: 2pt;
+                padding-left: 5pt;
+                width: 96%;
+                background-color: #EEE;
+            }
+            a {
+                color: #40D;
+                text-decoration: none;
+            }
+            b {
+                font-weight: bold;
+            }
+            i {
+                font-style: italic;
+                text-decoration: underline;
+            }
+            img.figure {
+                border: 5pt solid #CCC;
+                max-height: 95vh;
+                max-width: 86vw;
+            }
+        </style>
+    </head>
+    <body>
+        <font style="font-size: 32pt">GLOpenAPI overview</font>
+        <h1>Links</h1>
+        <img src="./images/000.png" style="height: 65pt; float: left; padding-right: 5pt;">
+        GLOpenAPI landing page: <a href="https://visualization.genelab.nasa.gov/GLOpenAPI/">https://visualization.genelab.nasa.gov/GLOpenAPI/</a><br/>
+        GitHub repo: <a href="https://github.com/LankyCyril/GLOpenAPI">https://github.com/LankyCyril/GLOpenAPI</a><br/>
+        Visualization portal (uses the API internally): <a href="https://visualization.genelab.nasa.gov/data/">https://visualization.genelab.nasa.gov/data/</a><br/>
+        <b>Weill Cornell Medicine, NASA GeneLab, NASA Ames, Alidyne Consulting, KBR</b>
+ 
+        <h1>Metadata</h1>
+        The GeneLab data repository (<a href="https://genelab-data.ndc.nasa.gov/">genelab-data.ndc.nasa.gov</a>) stores metadata
+        in the ISA-Tab format (<a href="https://isa-specs.readthedocs.io/en/latest/">isa-specs.readthedocs.io</a>). These are structured
+        tabular files whose contents are <i>not</i> directly queriable.<br/>
+        <table>
+            <tr>
+                <td><img class="figure" style="width: 43vw; height: unset;" src="./images/001.png"></td>
+                <td><img class="figure" style="width: 43vw; height: unset;" src="./images/002.png"></td>
+            </tr>
+        </table>
+        GLOpenAPI processes these ISA-Tab records and converts them into a collection of <i>queriable</i> MongoDB documents.<br/>
+        Key-value pairs in queries follow ISA-Tab conventions (for example, key "study.characteristics.organism", value "Mus musculus").
+        <table>
+            <tr>
+                <td><img class="figure" style="width: 43vw; height: unset;" src="./images/isa2json.png"></td>
+                <td><img class="figure" style="width: 43vw; height: unset;" src="./images/003.png"></td>
+            </tr>
+        </table>
+ 
+        <h1>Interactive interface</h1>
+        The landing page of the API provides documentation mixed with a live query builder.<br/>
+        One of the output formats for tables is "browser" which allows further navigation and inspection through an interactive UI.<br/>
+        <b>Link:</b> <a href="https://visualization.genelab.nasa.gov/GLOpenAPI/">https://visualization.genelab.nasa.gov/GLOpenAPI/</a><br/>
+        <img class="figure" src="./images/004.png"><br/>
+        <b>Example query:</b><br/>
+            <a href="https://visualization.genelab.nasa.gov/GLOpenAPI/samples/?study.factor%20value.spaceflight&investigation.study%20assays.study%20assay%20technology%20type=RNA%20Sequencing%20(RNA-Seq)&study.characteristics.organism=Mus%20musculus&study.characteristics.material%20type=Liver&format=browser&file.datatype=unnormalized%20counts">
+                https://visualization.genelab.nasa.gov/GLOpenAPI/samples/<br/>
+                &nbsp;&nbsp;&nbsp;&nbsp;?study.factor value.spaceflight<br/>
+                &nbsp;&nbsp;&nbsp;&nbsp;&investigation.study assays.study assay technology type=RNA Sequencing (RNA-Seq)<br/>
+                &nbsp;&nbsp;&nbsp;&nbsp;&study.characteristics.organism=Mus musculus<br/>
+                &nbsp;&nbsp;&nbsp;&nbsp;&study.characteristics.material type=Liver<br/>
+                &nbsp;&nbsp;&nbsp;&nbsp;&file.datatype=unnormalized counts<br/>
+                &nbsp;&nbsp;&nbsp;&nbsp;&format=browser
+            </a><br/>
+        <img class="figure" src="./images/005.png">
+        <br/>
+        Other formats, like "csv", "tsv", "json" can be ingested programmatically, for example, in Python:<br/>
+        <img class="figure" src="./images/006.png">
+ 
+        <h1>Data</h1>
+        When there's underlying data associated with the metadata query (for example, a user also queries for <nobr>"file.datatype=unnormalized counts"</nobr>),
+        one can query for data directly. If, like unnormalized counts, the data is allowed to be merged across multiple datasets,
+        a merged table will be returned. Note multiple accession and assay names in the header of the example table.<br/>
+        <b>Example query:</b><br/>
+            <a href="https://visualization.genelab.nasa.gov/GLOpenAPI/data/?study.factor%20value.spaceflight&investigation.study%20assays.study%20assay%20technology%20type=RNA%20Sequencing%20%28RNA-Seq%29&study.characteristics.organism=Mus%20musculus&study.characteristics.material%20type=Liver&format=browser&file.datatype=unnormalized%20counts">
+                https://visualization.genelab.nasa.gov/GLOpenAPI/data/<br/>
+                &nbsp;&nbsp;&nbsp;&nbsp;?study.factor value.spaceflight<br/>
+                &nbsp;&nbsp;&nbsp;&nbsp;&investigation.study assays.study assay technology type=RNA Sequencing (RNA-Seq)<br/>
+                &nbsp;&nbsp;&nbsp;&nbsp;&study.characteristics.organism=Mus musculus<br/>
+                &nbsp;&nbsp;&nbsp;&nbsp;&study.characteristics.material type=Liver<br/>
+                &nbsp;&nbsp;&nbsp;&nbsp;&file.datatype=unnormalized counts<br/>
+                &nbsp;&nbsp;&nbsp;&nbsp;&format=browser
+            </a><br/>
+        <img class="figure" src="./images/007.png">
+        <br/>
+        Once again, the same can be done programmatically:
+        <img class="figure" src="./images/008.png">
+ 
+        <h1>Other supported data formats</h1>
+        The GeneLab repo hosts raw and preprocessed data, such as fastq files, PCA plots,...<br/>
+        All of these data can be requested through the API by supplying the appropriate "file.datatype" value.<br/>
+        When such data is tabular in nature, e.g. differential expression results, it can also be returned as a table:<br/>
+        <b>Example query:</b><br/>
+            <a href="https://visualization.genelab.nasa.gov/GLOpenAPI/data/?id=GLDS-4&file.datatype=differential%20expression&format=browser">
+                https://visualization.genelab.nasa.gov/GLOpenAPI/data/<br/>
+                &nbsp;&nbsp;&nbsp;&nbsp;?id=GLDS-4<br/>
+                &nbsp;&nbsp;&nbsp;&nbsp;&file.datatype=differential expression<br/>
+                &nbsp;&nbsp;&nbsp;&nbsp;&format=browser
+            </a><br/>
+        <img class="figure" src="./images/009.png">
+ 
+        <h1>GLOpenAPI powers the backend of the GeneLab visualization portal</h1>
+        <b>Link:</b> <a href="https://visualization.genelab.nasa.gov/data/">https://visualization.genelab.nasa.gov/data/</a><br/>
+        <img class="figure" src="./images/010.png"><br/>
+        <b>Link:</b> <a href="https://visualization.genelab.nasa.gov/data/GLDS-4">https://visualization.genelab.nasa.gov/data/GLDS-4</a><br/>
+        <img class="figure" src="./images/011.png"><br/>
+        <img class="figure" src="./images/012.png"><br/>
+        <img class="figure" src="./images/013.png"><br/>
+        <img class="figure" src="./images/014.png"><br/>
+ 
+        <h1>Roll-your-own analyses</h1>
+        Of course, the API can also be leveraged in custom analysis pipelines.<br/>
+        <b>Basic Jupyter notebook:</b> <a href="https://github.com/LankyCyril/GLOpenAPI/blob/master/examples/heatmap.ipynb">https://github.com/LankyCyril/GLOpenAPI/blob/master/examples/heatmap.ipynb</a><br/>
+        <img class="figure" src="./images/015.png"><br/>
+    </body>
+</html>
