@@ -1,0 +1,6 @@
+#id	id	investigation.study assays	study.characteristics	study.characteristics	study.factor value	file	file
+#accession	assay name	study assay technology type	material type	organism	spaceflight	datatype	filename
+"GLDS-47"	"rr1-casis_transcription_profiling_RNA_Sequencing_(RNA-Seq)"	True	True	True	True	True	True
+"GLDS-48"	"rodent_research-1_(rr1)_nasa_liver_transcription_profiling_RNA_Sequencing_(RNA-Seq)"	True	True	True	True	True	True
+"GLDS-164"	"RNA_Seq"	True	True	True	True	True	True
+"GLDS-168"	"nist-liver_transcription_profiling_RNA_Sequencing_(RNA-Seq)"	True	True	True	True	True	True

@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>NASA GeneLab Open API: assays {'study.factor 
+value.spaceflight': [''], 'investigation.study assays.study assay 
+technology type': ['RNA Sequencing %28RNA-Seq%29'], 
+'study.characteristics.organism': ['Mus musculus'], 
+'study.characteristics.material type': ['Liver'], 'format': ['browser'],
+ 'file.datatype': ['unnormalized counts']}</title>
+    <link rel="stylesheet" href="metadata_files/slick-2.4.36.grid.min.css" type="text/css">
+    <link rel="stylesheet" href="metadata_files/css2.css">
+    <style>
+        html, body {margin: 0; padding: 0; background: #FFF; overflow: auto}
+        body {font-size: 10pt; font-family: "Oxygen Mono", monospace}
+        #preface {
+            position: absolute; top: 0; left: 0; right: 0;
+            min-height: 22pt; max-height: 22pt; height: 22pt;
+            background: #CDF; padding: 2pt !important;
+            line-height: 1.1;
+            overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+        }
+        #sorting_popup {
+            position: absolute; top: 0; right: 0;
+            margin: 2pt !important; max-height: 18pt; height: 18pt;
+            padding: 1pt 2pt !important; line-height: 1.05; font-size: 9pt;
+            overflow: hidden; text-overflow: ellipsis;
+            background: #D10; color: white;
+            cursor: pointer;
+        }
+        #sorting_reload {
+            margin: 0pt !important; display: inline-block; font-size: 9pt;
+            overflow: hidden; text-overflow: ellipsis;
+        }
+        #sorting_explain {
+            margin: 3pt 0pt !important; display: inline-block; font-size: 12pt;
+            overflow: hidden; text-overflow: ellipsis;
+        }
+        .fullpage{position: absolute; top: 25pt; left: 0; right: 0; bottom: 0}
+        #grid {border: .25pt solid black}
+        #info {
+            margin: 10pt auto; min-width: 3in; max-width: 50%;
+            max-height: 90%; overflow: auto;
+            padding: 2pt; background: #CDF; border: 1pt solid black;
+        }
+        #info tt {background: #EEE; border: 1px solid gray; padding: 1pt}
+        #noscript {padding: 2pt !important}
+        .crosshair {
+            position: fixed; top: 0; left: 0; z-index: 2;
+            margin-top: -3px; margin-left: -2px;
+            background: transparent; pointer-events: none;
+            border-top: 1px dotted #000; border-left: 1px dotted #000;
+            display: none;
+        }
+        #crosshair-h {width: 100%}
+        #crosshair-v {height: 100%}
+        .slick-header-column {
+            background: #DDD; font-weight: 600;
+            border: .5pt solid black !important;
+        }
+        
+        .slick-cell {
+            line-height: 1.65; background: #FFFFFF99; border: .25pt solid black;
+        }
+        .slick-cell.frozen {font-weight: 600}
+        .slick-row.odd {background: #E8E8E8}
+        a {text-decoration: none; color: black; cursor: pointer}
+        a:hover {text-decoration: underline; color: blue}
+        a.filter:hover:after {
+            content: " \229e"; display: inline-block; white-space: pre;
+            text-decoration: none; color: #D10;
+        }
+        a.file:hover:after {
+            content: " \21e9"; display: inline-block; white-space: pre;
+            text-decoration: none; color: #D10; font-weight: 600;
+        }
+    </style>
+    <script src="metadata_files/jquery-3.6.0.slim.min.js"></script>
+    <script src="metadata_files/jquery.event.drag-2.3.0.min.js"></script>
+    <script src="metadata_files/slick-2.4.36.core.min.js"></script>
+    <script src="metadata_files/slick-2.4.36.grid.min.js"></script>
+<style type="text/css" rel="stylesheet">.slickgrid_29521 .slick-group-header-column { left: 1000px; } .slickgrid_29521 .slick-header-column { left: 1000px; } .slickgrid_29521 .slick-top-panel { height:25px; } .slickgrid_29521 .slick-preheader-panel { height:25px; } .slickgrid_29521 .slick-headerrow-columns { height:25px; } .slickgrid_29521 .slick-footerrow-columns { height:25px; } .slickgrid_29521 .slick-cell { height:21.166666px; } .slickgrid_29521 .slick-row { height:25px; } .slickgrid_29521 .l0 { } .slickgrid_29521 .r0 { } .slickgrid_29521 .l1 { } .slickgrid_29521 .r1 { } .slickgrid_29521 .l2 { } .slickgrid_29521 .r2 { } .slickgrid_29521 .l3 { } .slickgrid_29521 .r3 { } .slickgrid_29521 .l4 { } .slickgrid_29521 .r4 { } .slickgrid_29521 .l5 { } .slickgrid_29521 .r5 { } .slickgrid_29521 .l6 { } .slickgrid_29521 .r6 { } .slickgrid_29521 .l7 { } .slickgrid_29521 .r7 { }</style></head>
+
+<body>
+    <div id="preface">
+        <b>Navigate:</b>
+        (Shift-)click headers to sort.
+        Hover to highlight equal values.
+        <a style="color:#D10" id="crosshair-toggle">Toggle crosshairs</a>.<br>
+        <b>Download:</b> as
+        <a style="color:#D10" href="./assays.csv">csv</a>,
+        <a style="color:#D10" href="./assays.tsv">tsv</a>,
+        <a style="color:#D10" href="./assays.json">json</a>.
+        <b>Switch view level:</b>
+        <a style="color:#D10" href="#">assays</a>,
+        <a style="color:#D10" href="./metadata.html">samples</a>,
+        <a style="color:#D10" href="./rnaseq-unnormalized.html">data</a>.
+    </div>
+    <div id="sorting_popup" style="display: none">
+        <div id="sorting_reload" style="display: inline-block">CUSTOM SORT ORDER<br>↻&nbsp;reload to reset</div>
+        <div id="sorting_explain" style="display: inline-block">[?]</div>
+    </div>
+    <div id="grid" class="fullpage slickgrid_29521 ui-widget" style="overflow: hidden; outline: currentcolor none 0px;"><div tabindex="0" hidefocus="" style="position:fixed;width:0;height:0;top:0;left:0;outline:0;"></div><div class="slick-pane slick-pane-header slick-pane-left" tabindex="0" style="width: 128.367px;"><div class="slick-preheader-panel ui-state-default slick-header" style="overflow:hidden;position:relative;"><div style="width: 4918.47px; left: -1000px;" class="slick-header-columns"><div class="ui-state-default slick-header-column" style="width: 119.95px;"><span class="slick-column-name">id</span></div></div><div style="display: block; height: 1px; position: absolute; top: 0px; left: 0px; width: 1790.1px;"></div></div><div class="slick-header ui-state-default slick-header-left"><div class="slick-header-columns slick-header-columns-left" style="left: -1000px; user-select: none; width: 1128.37px;" unselectable="on"><div class="ui-state-default slick-header-column frozen slick-header-sortable" style="width: 119.95px;" id="slickgrid_295210" title=""><span class="slick-column-name">accession</span><span class="slick-sort-indicator"></span></div></div></div></div><div class="slick-pane slick-pane-header slick-pane-right" tabindex="0" style="left: 128.367px; width: 1204.13px;"><div class="slick-preheader-panel ui-state-default slick-header" style="overflow:hidden;position:relative;"><div class="slick-header-columns" style="left: -1000px; width: 4918.47px;"><div class="ui-state-default slick-header-column" style="width: 714.416px;"><span class="slick-column-name">id</span></div><div class="ui-state-default slick-header-column" style="width: 264.55px;"><span class="slick-column-name">investigation.study assays</span></div><div class="ui-state-default slick-header-column" style="width: 272.417px;"><span class="slick-column-name">study.characteristics</span></div><div class="ui-state-default slick-header-column" style="width: 136.016px;"><span class="slick-column-name">study.factor value</span></div><div class="ui-state-default slick-header-column" style="width: 232.25px;"><span class="slick-column-name">file</span></div></div><div style="display:block;height:1px;position:absolute;top:0;left:0;"></div></div><div class="slick-header ui-state-default slick-header-right"><div class="slick-header-columns slick-header-columns-right" style="left: -1000px; user-select: none; width: 2790.1px;" unselectable="on"><div class="ui-state-default slick-header-column slick-header-sortable" style="width: 714.416px;" id="slickgrid_295211" title=""><span class="slick-column-name">assay name</span><span class="slick-sort-indicator"></span></div><div class="ui-state-default slick-header-column slick-header-sortable" style="width: 264.55px;" id="slickgrid_295212" title=""><span class="slick-column-name">study assay technology type</span><span class="slick-sort-indicator"></span></div><div class="ui-state-default slick-header-column slick-header-sortable" style="width: 152.083px;" id="slickgrid_295213" title=""><span class="slick-column-name">material type</span><span class="slick-sort-indicator"></span></div><div class="ui-state-default slick-header-column slick-header-sortable" style="width: 111.917px;" id="slickgrid_295214" title=""><span class="slick-column-name">organism</span><span class="slick-sort-indicator"></span></div><div class="ui-state-default slick-header-column slick-header-sortable" style="width: 136.016px;" id="slickgrid_295215" title=""><span class="slick-column-name">spaceflight</span><span class="slick-sort-indicator"></span></div><div class="ui-state-default slick-header-column slick-header-sortable" style="width: 111.917px;" id="slickgrid_295216" title=""><span class="slick-column-name">datatype</span><span class="slick-sort-indicator"></span></div><div class="ui-state-default slick-header-column slick-header-sortable" style="width: 111.917px;" id="slickgrid_295217" title=""><span class="slick-column-name">filename</span><span class="slick-sort-indicator"></span></div></div></div></div><div class="slick-pane slick-pane-top slick-pane-left" tabindex="0" style="top: 49px; height: 589.333px; width: 128.367px;"><div class="slick-headerrow ui-state-default" style="display: none; width: 128.367px;"><div style="display: block; height: 1px; position: absolute; top: 0px; left: 0px; width: 1790.1px;"></div><div class="slick-headerrow-columns slick-headerrow-columns-left" style="width: 128.367px;"></div></div><div class="slick-top-panel-scroller ui-state-default" style="display: none;"><div class="slick-top-panel" style="width:10000px"></div></div><div class="slick-viewport slick-viewport-top slick-viewport-left" tabindex="0" hidefocus="" style="overflow: scroll hidden; height: 589.333px; width: 128.367px;"><div class="grid-canvas grid-canvas-top grid-canvas-left" tabindex="0" hidefocus="" style="height: 589.333px; width: 128.367px;"><div class="ui-widget-content slick-row even" style="top:0px"><div class="slick-cell l0 r0 frozen"><a class="filter" href="https://visualization.genelab.nasa.gov/GLOpenAPI/assays/?study.factor%20value.spaceflight&amp;investigation.study%20assays.study%20assay%20technology%20type=RNA%20Sequencing%20%28RNA-Seq%29&amp;study.characteristics.organism=Mus%20musculus&amp;study.characteristics.material%20type=Liver&amp;format=browser&amp;file.datatype=unnormalized%20counts&amp;id=GLDS-168">GLDS-168</a></div></div><div class="ui-widget-content slick-row odd" style="top:25px"><div class="slick-cell l0 r0 frozen"><a class="filter" href="https://visualization.genelab.nasa.gov/GLOpenAPI/assays/?study.factor%20value.spaceflight&amp;investigation.study%20assays.study%20assay%20technology%20type=RNA%20Sequencing%20%28RNA-Seq%29&amp;study.characteristics.organism=Mus%20musculus&amp;study.characteristics.material%20type=Liver&amp;format=browser&amp;file.datatype=unnormalized%20counts&amp;id=GLDS-164">GLDS-164</a></div></div><div class="ui-widget-content slick-row even" style="top:50px"><div class="slick-cell l0 r0 frozen"><a class="filter" href="https://visualization.genelab.nasa.gov/GLOpenAPI/assays/?study.factor%20value.spaceflight&amp;investigation.study%20assays.study%20assay%20technology%20type=RNA%20Sequencing%20%28RNA-Seq%29&amp;study.characteristics.organism=Mus%20musculus&amp;study.characteristics.material%20type=Liver&amp;format=browser&amp;file.datatype=unnormalized%20counts&amp;id=GLDS-48">GLDS-48</a></div></div><div class="ui-widget-content slick-row odd" style="top:75px"><div class="slick-cell l0 r0 frozen"><a class="filter" href="https://visualization.genelab.nasa.gov/GLOpenAPI/assays/?study.factor%20value.spaceflight&amp;investigation.study%20assays.study%20assay%20technology%20type=RNA%20Sequencing%20%28RNA-Seq%29&amp;study.characteristics.organism=Mus%20musculus&amp;study.characteristics.material%20type=Liver&amp;format=browser&amp;file.datatype=unnormalized%20counts&amp;id=GLDS-47">GLDS-47</a></div></div></div></div></div><div class="slick-pane slick-pane-top slick-pane-right" tabindex="0" style="top: 49px; height: 589.333px; left: 128.367px; width: 1204.13px;"><div class="slick-headerrow ui-state-default" style="display: none; width: 1204.13px;"><div style="display: block; height: 1px; position: absolute; top: 0px; left: 0px; width: 1790.1px;"></div><div class="slick-headerrow-columns slick-headerrow-columns-right" style="width: 1661.73px;"></div></div><div class="slick-top-panel-scroller ui-state-default" style="display: none;"><div class="slick-top-panel" style="width:10000px"></div></div><div class="slick-viewport slick-viewport-top slick-viewport-right" tabindex="0" hidefocus="" style="overflow: scroll auto; height: 589.333px; width: 1204.13px;"><div class="grid-canvas grid-canvas-top grid-canvas-right" tabindex="0" hidefocus="" style="height: 589.333px; width: 1661.73px;"><div class="ui-widget-content slick-row even" style="top:0px"><div class="slick-cell l1 r1"><a class="filter" href="https://visualization.genelab.nasa.gov/GLOpenAPI/assays/?study.factor%20value.spaceflight&amp;investigation.study%20assays.study%20assay%20technology%20type=RNA%20Sequencing%20%28RNA-Seq%29&amp;study.characteristics.organism=Mus%20musculus&amp;study.characteristics.material%20type=Liver&amp;format=browser&amp;file.datatype=unnormalized%20counts&amp;id=GLDS-168/nist-liver_transcription_profiling_RNA_Sequencing_%28RNA-Seq%29">nist-liver_transcription_profiling_RNA_Sequencing_(RNA-Seq)</a></div><div class="slick-cell l2 r2"><a class="filter" style="color:green" href="https://visualization.genelab.nasa.gov/GLOpenAPI/assays/?study.factor%20value.spaceflight&amp;investigation.study%20assays.study%20assay%20technology%20type=RNA%20Sequencing%20%28RNA-Seq%29&amp;study.characteristics.organism=Mus%20musculus&amp;study.characteristics.material%20type=Liver&amp;format=browser&amp;file.datatype=unnormalized%20counts&amp;investigation.study%20assays.study%20assay%20technology%20type">True</a></div><div class="slick-cell l3 r3"><a class="filter" style="color:green" href="https://visualization.genelab.nasa.gov/GLOpenAPI/assays/?study.factor%20value.spaceflight&amp;investigation.study%20assays.study%20assay%20technology%20type=RNA%20Sequencing%20%28RNA-Seq%29&amp;study.characteristics.organism=Mus%20musculus&amp;study.characteristics.material%20type=Liver&amp;format=browser&amp;file.datatype=unnormalized%20counts&amp;study.characteristics.material%20type">True</a></div><div class="slick-cell l4 r4"><a class="filter" style="color:green" href="https://visualization.genelab.nasa.gov/GLOpenAPI/assays/?study.factor%20value.spaceflight&amp;investigation.study%20assays.study%20assay%20technology%20type=RNA%20Sequencing%20%28RNA-Seq%29&amp;study.characteristics.organism=Mus%20musculus&amp;study.characteristics.material%20type=Liver&amp;format=browser&amp;file.datatype=unnormalized%20counts&amp;study.characteristics.organism">True</a></div><div class="slick-cell l5 r5"><a class="filter" style="color:green" href="https://visualization.genelab.nasa.gov/GLOpenAPI/assays/?study.factor%20value.spaceflight&amp;investigation.study%20assays.study%20assay%20technology%20type=RNA%20Sequencing%20%28RNA-Seq%29&amp;study.characteristics.organism=Mus%20musculus&amp;study.characteristics.material%20type=Liver&amp;format=browser&amp;file.datatype=unnormalized%20counts&amp;study.factor%20value.spaceflight">True</a></div><div class="slick-cell l6 r6"><a class="filter" style="color:green" href="https://visualization.genelab.nasa.gov/GLOpenAPI/assays/?study.factor%20value.spaceflight&amp;investigation.study%20assays.study%20assay%20technology%20type=RNA%20Sequencing%20%28RNA-Seq%29&amp;study.characteristics.organism=Mus%20musculus&amp;study.characteristics.material%20type=Liver&amp;format=browser&amp;file.datatype=unnormalized%20counts&amp;file.datatype">True</a></div><div class="slick-cell l7 r7"><a class="filter" style="color:green" href="https://visualization.genelab.nasa.gov/GLOpenAPI/assays/?study.factor%20value.spaceflight&amp;investigation.study%20assays.study%20assay%20technology%20type=RNA%20Sequencing%20%28RNA-Seq%29&amp;study.characteristics.organism=Mus%20musculus&amp;study.characteristics.material%20type=Liver&amp;format=browser&amp;file.datatype=unnormalized%20counts&amp;file.filename">True</a></div></div><div class="ui-widget-content slick-row odd" style="top:25px"><div class="slick-cell l1 r1"><a class="filter" href="https://visualization.genelab.nasa.gov/GLOpenAPI/assays/?study.factor%20value.spaceflight&amp;investigation.study%20assays.study%20assay%20technology%20type=RNA%20Sequencing%20%28RNA-Seq%29&amp;study.characteristics.organism=Mus%20musculus&amp;study.characteristics.material%20type=Liver&amp;format=browser&amp;file.datatype=unnormalized%20counts&amp;id=GLDS-164/RNA_Seq">RNA_Seq</a></div><div class="slick-cell l2 r2"><a class="filter" style="color:green" href="https://visualization.genelab.nasa.gov/GLOpenAPI/assays/?study.factor%20value.spaceflight&amp;investigation.study%20assays.study%20assay%20technology%20type=RNA%20Sequencing%20%28RNA-Seq%29&amp;study.characteristics.organism=Mus%20musculus&amp;study.characteristics.material%20type=Liver&amp;format=browser&amp;file.datatype=unnormalized%20counts&amp;investigation.study%20assays.study%20assay%20technology%20type">True</a></div><div class="slick-cell l3 r3"><a class="filter" style="color:green" href="https://visualization.genelab.nasa.gov/GLOpenAPI/assays/?study.factor%20value.spaceflight&amp;investigation.study%20assays.study%20assay%20technology%20type=RNA%20Sequencing%20%28RNA-Seq%29&amp;study.characteristics.organism=Mus%20musculus&amp;study.characteristics.material%20type=Liver&amp;format=browser&amp;file.datatype=unnormalized%20counts&amp;study.characteristics.material%20type">True</a></div><div class="slick-cell l4 r4"><a class="filter" style="color:green" href="https://visualization.genelab.nasa.gov/GLOpenAPI/assays/?study.factor%20value.spaceflight&amp;investigation.study%20assays.study%20assay%20technology%20type=RNA%20Sequencing%20%28RNA-Seq%29&amp;study.characteristics.organism=Mus%20musculus&amp;study.characteristics.material%20type=Liver&amp;format=browser&amp;file.datatype=unnormalized%20counts&amp;study.characteristics.organism">True</a></div><div class="slick-cell l5 r5"><a class="filter" style="color:green" href="https://visualization.genelab.nasa.gov/GLOpenAPI/assays/?study.factor%20value.spaceflight&amp;investigation.study%20assays.study%20assay%20technology%20type=RNA%20Sequencing%20%28RNA-Seq%29&amp;study.characteristics.organism=Mus%20musculus&amp;study.characteristics.material%20type=Liver&amp;format=browser&amp;file.datatype=unnormalized%20counts&amp;study.factor%20value.spaceflight">True</a></div><div class="slick-cell l6 r6"><a class="filter" style="color:green" href="https://visualization.genelab.nasa.gov/GLOpenAPI/assays/?study.factor%20value.spaceflight&amp;investigation.study%20assays.study%20assay%20technology%20type=RNA%20Sequencing%20%28RNA-Seq%29&amp;study.characteristics.organism=Mus%20musculus&amp;study.characteristics.material%20type=Liver&amp;format=browser&amp;file.datatype=unnormalized%20counts&amp;file.datatype">True</a></div><div class="slick-cell l7 r7"><a class="filter" style="color:green" href="https://visualization.genelab.nasa.gov/GLOpenAPI/assays/?study.factor%20value.spaceflight&amp;investigation.study%20assays.study%20assay%20technology%20type=RNA%20Sequencing%20%28RNA-Seq%29&amp;study.characteristics.organism=Mus%20musculus&amp;study.characteristics.material%20type=Liver&amp;format=browser&amp;file.datatype=unnormalized%20counts&amp;file.filename">True</a></div></div><div class="ui-widget-content slick-row even" style="top:50px"><div class="slick-cell l1 r1"><a class="filter" href="https://visualization.genelab.nasa.gov/GLOpenAPI/assays/?study.factor%20value.spaceflight&amp;investigation.study%20assays.study%20assay%20technology%20type=RNA%20Sequencing%20%28RNA-Seq%29&amp;study.characteristics.organism=Mus%20musculus&amp;study.characteristics.material%20type=Liver&amp;format=browser&amp;file.datatype=unnormalized%20counts&amp;id=GLDS-48/rodent_research-1_%28rr1%29_nasa_liver_transcription_profiling_RNA_Sequencing_%28RNA-Seq%29">rodent_research-1_(rr1)_nasa_liver_transcription_profiling_RNA_Sequencing_(RNA-Seq)</a></div><div class="slick-cell l2 r2"><a class="filter" style="color:green" href="https://visualization.genelab.nasa.gov/GLOpenAPI/assays/?study.factor%20value.spaceflight&amp;investigation.study%20assays.study%20assay%20technology%20type=RNA%20Sequencing%20%28RNA-Seq%29&amp;study.characteristics.organism=Mus%20musculus&amp;study.characteristics.material%20type=Liver&amp;format=browser&amp;file.datatype=unnormalized%20counts&amp;investigation.study%20assays.study%20assay%20technology%20type">True</a></div><div class="slick-cell l3 r3"><a class="filter" style="color:green" href="https://visualization.genelab.nasa.gov/GLOpenAPI/assays/?study.factor%20value.spaceflight&amp;investigation.study%20assays.study%20assay%20technology%20type=RNA%20Sequencing%20%28RNA-Seq%29&amp;study.characteristics.organism=Mus%20musculus&amp;study.characteristics.material%20type=Liver&amp;format=browser&amp;file.datatype=unnormalized%20counts&amp;study.characteristics.material%20type">True</a></div><div class="slick-cell l4 r4"><a class="filter" style="color:green" href="https://visualization.genelab.nasa.gov/GLOpenAPI/assays/?study.factor%20value.spaceflight&amp;investigation.study%20assays.study%20assay%20technology%20type=RNA%20Sequencing%20%28RNA-Seq%29&amp;study.characteristics.organism=Mus%20musculus&amp;study.characteristics.material%20type=Liver&amp;format=browser&amp;file.datatype=unnormalized%20counts&amp;study.characteristics.organism">True</a></div><div class="slick-cell l5 r5"><a class="filter" style="color:green" href="https://visualization.genelab.nasa.gov/GLOpenAPI/assays/?study.factor%20value.spaceflight&amp;investigation.study%20assays.study%20assay%20technology%20type=RNA%20Sequencing%20%28RNA-Seq%29&amp;study.characteristics.organism=Mus%20musculus&amp;study.characteristics.material%20type=Liver&amp;format=browser&amp;file.datatype=unnormalized%20counts&amp;study.factor%20value.spaceflight">True</a></div><div class="slick-cell l6 r6"><a class="filter" style="color:green" href="https://visualization.genelab.nasa.gov/GLOpenAPI/assays/?study.factor%20value.spaceflight&amp;investigation.study%20assays.study%20assay%20technology%20type=RNA%20Sequencing%20%28RNA-Seq%29&amp;study.characteristics.organism=Mus%20musculus&amp;study.characteristics.material%20type=Liver&amp;format=browser&amp;file.datatype=unnormalized%20counts&amp;file.datatype">True</a></div><div class="slick-cell l7 r7"><a class="filter" style="color:green" href="https://visualization.genelab.nasa.gov/GLOpenAPI/assays/?study.factor%20value.spaceflight&amp;investigation.study%20assays.study%20assay%20technology%20type=RNA%20Sequencing%20%28RNA-Seq%29&amp;study.characteristics.organism=Mus%20musculus&amp;study.characteristics.material%20type=Liver&amp;format=browser&amp;file.datatype=unnormalized%20counts&amp;file.filename">True</a></div></div><div class="ui-widget-content slick-row odd" style="top:75px"><div class="slick-cell l1 r1"><font style="background:#FF8"><a class="filter" href="https://visualization.genelab.nasa.gov/GLOpenAPI/assays/?study.factor%20value.spaceflight&amp;investigation.study%20assays.study%20assay%20technology%20type=RNA%20Sequencing%20%28RNA-Seq%29&amp;study.characteristics.organism=Mus%20musculus&amp;study.characteristics.material%20type=Liver&amp;format=browser&amp;file.datatype=unnormalized%20counts&amp;id=GLDS-47/rr1-casis_transcription_profiling_RNA_Sequencing_%28RNA-Seq%29">rr1-casis_transcription_profiling_RNA_Sequencing_(RNA-Seq)</a></font></div><div class="slick-cell l2 r2"><a class="filter" style="color:green" href="https://visualization.genelab.nasa.gov/GLOpenAPI/assays/?study.factor%20value.spaceflight&amp;investigation.study%20assays.study%20assay%20technology%20type=RNA%20Sequencing%20%28RNA-Seq%29&amp;study.characteristics.organism=Mus%20musculus&amp;study.characteristics.material%20type=Liver&amp;format=browser&amp;file.datatype=unnormalized%20counts&amp;investigation.study%20assays.study%20assay%20technology%20type">True</a></div><div class="slick-cell l3 r3"><a class="filter" style="color:green" href="https://visualization.genelab.nasa.gov/GLOpenAPI/assays/?study.factor%20value.spaceflight&amp;investigation.study%20assays.study%20assay%20technology%20type=RNA%20Sequencing%20%28RNA-Seq%29&amp;study.characteristics.organism=Mus%20musculus&amp;study.characteristics.material%20type=Liver&amp;format=browser&amp;file.datatype=unnormalized%20counts&amp;study.characteristics.material%20type">True</a></div><div class="slick-cell l4 r4"><a class="filter" style="color:green" href="https://visualization.genelab.nasa.gov/GLOpenAPI/assays/?study.factor%20value.spaceflight&amp;investigation.study%20assays.study%20assay%20technology%20type=RNA%20Sequencing%20%28RNA-Seq%29&amp;study.characteristics.organism=Mus%20musculus&amp;study.characteristics.material%20type=Liver&amp;format=browser&amp;file.datatype=unnormalized%20counts&amp;study.characteristics.organism">True</a></div><div class="slick-cell l5 r5"><a class="filter" style="color:green" href="https://visualization.genelab.nasa.gov/GLOpenAPI/assays/?study.factor%20value.spaceflight&amp;investigation.study%20assays.study%20assay%20technology%20type=RNA%20Sequencing%20%28RNA-Seq%29&amp;study.characteristics.organism=Mus%20musculus&amp;study.characteristics.material%20type=Liver&amp;format=browser&amp;file.datatype=unnormalized%20counts&amp;study.factor%20value.spaceflight">True</a></div><div class="slick-cell l6 r6"><a class="filter" style="color:green" href="https://visualization.genelab.nasa.gov/GLOpenAPI/assays/?study.factor%20value.spaceflight&amp;investigation.study%20assays.study%20assay%20technology%20type=RNA%20Sequencing%20%28RNA-Seq%29&amp;study.characteristics.organism=Mus%20musculus&amp;study.characteristics.material%20type=Liver&amp;format=browser&amp;file.datatype=unnormalized%20counts&amp;file.datatype">True</a></div><div class="slick-cell l7 r7"><a class="filter" style="color:green" href="https://visualization.genelab.nasa.gov/GLOpenAPI/assays/?study.factor%20value.spaceflight&amp;investigation.study%20assays.study%20assay%20technology%20type=RNA%20Sequencing%20%28RNA-Seq%29&amp;study.characteristics.organism=Mus%20musculus&amp;study.characteristics.material%20type=Liver&amp;format=browser&amp;file.datatype=unnormalized%20counts&amp;file.filename">True</a></div></div></div></div></div><div class="slick-pane slick-pane-bottom slick-pane-left" tabindex="0" style="display: none;"><div class="slick-viewport slick-viewport-bottom slick-viewport-left" tabindex="0" hidefocus="" style="overflow: auto hidden;"><div class="grid-canvas grid-canvas-bottom grid-canvas-left" tabindex="0" hidefocus=""></div></div></div><div class="slick-pane slick-pane-bottom slick-pane-right" tabindex="0" style="display: none;"><div class="slick-viewport slick-viewport-bottom slick-viewport-right" tabindex="0" hidefocus="" style="overflow: auto;"><div class="grid-canvas grid-canvas-bottom grid-canvas-right" tabindex="0" hidefocus=""></div></div></div><div tabindex="0" hidefocus="" style="position:fixed;width:0;height:0;top:0;left:0;outline:0;"></div></div>
+    <div id="crosshair-h" class="crosshair" style="top: 213px;"></div>
+    <div id="crosshair-v" class="crosshair" style="left: 510px;"></div>
+
+
+<script>
+
+var basic_formatter = function(r,c,v,d,x) {
+    return ((v === true) || (v === "True"))
+            ? "<font color=green>True</font>" : (
+                ((v === false) || (v === "False"))
+                ? "<font color='#FAA'>False</font>" : (
+                    ((v === null) || (v === "NaN") || (v !== v))
+                    ? "<i style='color:#BBB'>NaN</i>" : v ))
+};
+
+var columns = [], _rc = [["id","accession"],["id","assay name"],["investigation.study assays","study assay technology type"],["study.characteristics","material type"],["study.characteristics","organism"],["study.factor value","spaceflight"],["file","datatype"],["file","filename"]];
+for (var i = _rc.length; i --> 0;)
+    columns[i] = {
+        id: i, field: i, columnGroup: _rc[i][0], name: _rc[i][1],
+        sortable: true, resizable: false, momentarilyFormattable: true,
+        formatter: basic_formatter, defaultFormatter: basic_formatter,
+    };
+var data = [["GLDS-168","nist-liver_transcription_profiling_RNA_Sequencing_(RNA-Seq)",true,true,true,true,true,true],["GLDS-164","RNA_Seq",true,true,true,true,true,true],["GLDS-48","rodent_research-1_(rr1)_nasa_liver_transcription_profiling_RNA_Sequencing_(RNA-Seq)",true,true,true,true,true,true],["GLDS-47","rr1-casis_transcription_profiling_RNA_Sequencing_(RNA-Seq)",true,true,true,true,true,true]];
+
+var context_url = "https://visualization.genelab.nasa.gov/GLOpenAPI/assays/?study.factor value.spaceflight&investigation.study assays.study assay technology type=RNA Sequencing %28RNA-Seq%29&study.characteristics.organism=Mus musculus&study.characteristics.material type=Liver&format=browser&file.datatype=unnormalized counts&";
+var fr_assays = function(v, postfix) {
+    return ((v === null) || (v === "NaN") || (v !== v))
+        ? "<i style='color:#BBB'>NaN</i>"
+        : (((v === false) || (v === "False"))
+            ? "<font style='color:#FAA'>False</font>"
+            : "<a class='filter' style='color:green' href='" +
+              context_url + escape(postfix) + "'>True</a>");
+}
+var fr_samples = function(v, postfix) {
+    return ((v === null) || (v === "NaN") || (v !== v))
+        ? "<i style='color:#BBB'>NaN</i>"
+        : "<a class='filter' href='" +
+          context_url + escape(postfix) + "=" + escape(v) + "'>" + v + "</a>";
+}
+
+columns[0].formatter = columns[0].defaultFormatter = function(r,c,v,d,x){return "<a class='filter' "+
+        "href='https://visualization.genelab.nasa.gov/GLOpenAPI/assays/?study.factor value.spaceflight&investigation.study assays.study assay technology type=RNA Sequencing %28RNA-Seq%29&study.characteristics.organism=Mus musculus&study.characteristics.material type=Liver&format=browser&file.datatype=unnormalized counts&id="+escape(v)+"'>"+v+"</a>";};
+columns[1].formatter = columns[1].defaultFormatter = function(r,c,v,d,x){return "<a class='filter' "+
+        "href='https://visualization.genelab.nasa.gov/GLOpenAPI/assays/?study.factor value.spaceflight&investigation.study assays.study assay technology type=RNA Sequencing %28RNA-Seq%29&study.characteristics.organism=Mus musculus&study.characteristics.material type=Liver&format=browser&file.datatype=unnormalized counts&id="+data[r][0]+"/"+escape(v)+"'>"+v+"</a>";};
+columns[2].formatter = columns[2].defaultFormatter = function(r,c,v,d,x){return fr_assays(v, "investigation.study assays.study assay technology type")};
+columns[3].formatter = columns[3].defaultFormatter = function(r,c,v,d,x){return fr_assays(v, "study.characteristics.material type")};
+columns[4].formatter = columns[4].defaultFormatter = function(r,c,v,d,x){return fr_assays(v, "study.characteristics.organism")};
+columns[5].formatter = columns[5].defaultFormatter = function(r,c,v,d,x){return fr_assays(v, "study.factor value.spaceflight")};
+columns[6].formatter = columns[6].defaultFormatter = function(r,c,v,d,x){return fr_assays(v, "file.datatype")};
+columns[7].formatter = columns[7].defaultFormatter = function(r,c,v,d,x){return fr_assays(v, "file.filename")};
+
+var options = {
+    createPreHeaderPanel: true, showPreHeaderPanel: true,
+    defaultColumnWidth: 120, multiColumnSort: true,
+    enableTextSelectionOnCells: true, enableColumnReorder: false,
+    frozenColumn: 0,
+};
+options.defaultFrozenColumn = options.frozenColumn;
+
+function render_header_groups(pre_header_panel, start, end) {
+    pre_header_panel
+        .empty() .addClass("slick-header-columns")
+        .css("left", "-1000px") .width(grid.getHeadersWidth());
+    pre_header_panel.parent().addClass("slick-header");
+    var hc_width_delta = grid.getHeaderColumnWidthDiff();
+    var m, header, last_group = "", total_width = 0;
+    for (var i = start; i < end; i++) {
+        m = columns[i];
+        if (last_group === m.columnGroup && i > 0) {
+            total_width += m.width;
+            header.width(total_width - hc_width_delta);
+        }
+        else {
+            total_width = m.width;
+            var mcg = m.columnGroup || "";
+            header = $("<div class='ui-state-default slick-header-column' />")
+                .html("<span class='slick-column-name'>" + mcg + "</span>")
+                .width(m.width - hc_width_delta)
+                .appendTo(pre_header_panel);
+        }
+        last_group = m.columnGroup;
+    }
+}
+
+for (var i = columns.length; i --> 0;) {
+    c = columns[i];
+    var field = c.field;
+    var longest = c.name;
+    for (var j = data.length; j --> 0;) {
+        var value = data[j][field];
+        if ((value !== null) && (value === value) && (value !== undefined))
+            if (value.toString().length > longest.length)
+                longest = value;
+    }
+    var widthchecker = $("<span>"+longest+"&nbsp;&times;</span>").hide();
+    $("body").append(widthchecker);
+    columns[i].width = widthchecker.width() + 40;
+    widthchecker.remove();
+}
+
+var grid = new Slick.Grid("#grid", data, columns, options);
+
+if (options.frozenColumn !== undefined) {
+    var b = options.frozenColumn + 1;
+    render_header_groups($(grid.getPreHeaderPanelLeft()), 0, b);
+    render_header_groups($(grid.getPreHeaderPanelRight()), b, columns.length);
+}
+else {
+    render_header_groups($(grid.getPreHeaderPanel()), 0, columns.length);
+}
+
+var momentarily_formatted = [];
+
+grid.onMouseEnter.subscribe(function (e, args) {
+    var g = args.grid;
+    var cell = g.getCellFromEvent(e);
+    var r = cell.row, c = cell.cell;
+    for (var x = 0, cl = columns.length; x < cl; x++) {
+        if (momentarily_formatted[x] === true) {
+            momentarily_formatted[x] = false;
+            columns[x].formatter = columns[x].defaultFormatter;
+            for (var y = 0, dl = data.length; y < dl; y++)
+                g.updateCell(y, x);
+        }
+    }
+    var col = columns[c], mfc = momentarily_formatted[c];
+    if ((col.momentarilyFormattable) || (mfc !== undefined)) {
+        momentarily_formatted[c] = true;
+        var value = data[r][columns[c].field];
+        columns[c].formatter = function(r,c,v,d,t) {
+            var fmt = columns[c].defaultFormatter(r,c,v,d,t)
+            return (v == value)
+                ? "<font style='background:#FF8'>"+fmt+"</font>" : fmt;
+        }
+        for (var y = 0, dl = data.length; y < dl; y++)
+            g.updateCell(y, c);
+    }
+});
+
+grid.onSort.subscribe(function(e, args) {
+    var sortcols = args.sortCols, g = args.grid;
+    data.sort(function (r1, r2) {
+        for (var i = 0, sl = sortcols.length; i < sl; i++) {
+            var f = sortcols[i].sortCol.field;
+            var v1 = r1[f], v2 = r2[f];
+            var sign = sortcols[i].sortAsc ? 1 : -1;
+            var ans = sign * (
+                ((v1 === "NaN") || (v1 === null) || (v1 !== v1))
+                ? (((v2 === "NaN") || (v2 === null) || (v2 !== v2)) ? 0 : -1)
+                : (((v2 === "NaN") || (v2 === null) || (v2 !== v2))
+                    ? 1 : v1.toString().localeCompare(
+                        v2, undefined, {numeric: true}
+                    )
+                )
+            );
+            if (ans != 0) return ans;
+        }
+        return 0;
+    });
+    g.invalidate();
+    g.render();
+    render_header_groups(
+        $(g.getPreHeaderPanelLeft()), 0, options.frozenColumn+1,
+    );
+    $("#sorting_popup").show();
+    $("#sorting_reload").click(function (e) {location.reload()});
+    $("#sorting_explain").click(function (e) {alert(
+        "Data was sorted manually in the browser; the order may be different to when requested via other formats.\n" +
+        "Static, non-interactive formats (CSV, TSV, JSON, CLS, GCT) always return data in the original order.\n" +
+        "Please rely on the original order if using these data for analyses, as it guarantees consistency."
+    )});
+});
+
+$(document).ready(function() {
+    var ch = $("#crosshair-h"), cv = $("#crosshair-v");
+    $(this).on("mousemove touchmove", function(e) {
+        ch.css("top", e.pageY); cv.css("left", e.pageX);
+    });
+    $("#crosshair-toggle").click(function () {
+        $(".crosshair").toggle();
+    });
+});
+
+$(window).resize(function() {
+    grid.setOptions({frozenColumn: false});
+    grid.setOptions({frozenColumn: options.defaultFrozenColumn});
+});
+
+</script>
+
+
+</body></html>
