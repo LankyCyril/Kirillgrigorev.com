@@ -47,8 +47,15 @@
 #links a[href*="be\.c"]:hover {background: #E00}
 #links a[href*="r\.c"]:hover {background: #4AE}
 
+#info, #vignette {
+    font: 12pt 'Roboto', sans-serif;
+}
+
+#info {
+    margin: -1pt 2.1pt -3pt 2.1pt;
+}
+
 #vignette {
     padding: 7pt 1.3pt;
-    font: 12pt 'Roboto', sans-serif;
     text-align: justify;
 }
