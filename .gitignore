@@ -1,3 +1,4 @@
 .snakemake
 index.html
 x/temp
+env
