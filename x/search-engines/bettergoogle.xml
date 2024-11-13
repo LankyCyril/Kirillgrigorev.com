@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<OpenSearchDescription xmlns="http://a9.com/-/spec/opensearch/1.1/"
+                       xmlns:moz="http://www.mozilla.org/2006/browser/search/">
+  <ShortName>Google[MycroftMod]:en_US+noai+ncr+nopws+nsfw</ShortName>
+  <Description>Google without Country Redirect, AI Overviews, Personalized Results, or Safe Search. Language en-US and Suggestions Enabled.</Description>
+  <Url type="text/html" method="get" template="https://www.google.com/search?udm=14&amp;q={searchTerms}&amp;gws_rd=cr&amp;pws=0&amp;safe=off&amp;gl=us&amp;hl=en&amp;num=20"/>
+  <Url type="application/x-suggestions+json" template="https://suggestqueries.google.com/complete/search?output=firefox&amp;client=firefox&amp;gl=US&amp;hl=en&amp;q={searchTerms}"/>
+  <Image width="32" height="32">https://www.google.com/favicon.ico</Image>
+  <Developer>Based on a Mycroft Project search template attributed to "Anon"</Developer>
+  <InputEncoding>UTF-8</InputEncoding>
+  <moz:SearchForm>https://www.google.com/?udm=14&amp;gws_rd=cr&amp;pws=0&amp;safe=off&amp;gl=us&amp;hl=en&amp;num=20</moz:SearchForm>
+  <Url type="application/opensearchdescription+xml" rel="self" template="https://mycroftproject.com/updateos.php/id0/google.xml"/>
+</OpenSearchDescription>
