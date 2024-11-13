@@ -7,6 +7,7 @@
   <Url type="application/x-suggestions+json" template="https://suggestqueries.google.com/complete/search?output=firefox&amp;client=firefox&amp;gl=US&amp;hl=en&amp;q={searchTerms}"/>
   <Image width="32" height="32">https://www.google.com/favicon.ico</Image>
   <Developer>Based on a Mycroft Project search template attributed to "Anon"</Developer>
+  <!-- Source and credit: https://mycroftproject.com/google-search-plugins.html -->
   <InputEncoding>UTF-8</InputEncoding>
   <moz:SearchForm>https://www.google.com/?udm=14&amp;gws_rd=cr&amp;pws=0&amp;safe=off&amp;gl=us&amp;hl=en&amp;num=20</moz:SearchForm>
   <Url type="application/opensearchdescription+xml" rel="self" template="https://mycroftproject.com/updateos.php/id0/google.xml"/>
